@@ -1,15 +1,21 @@
 <?php
+
 namespace Controllers;
+
+use MVC\Router; 
 
 
 class LoginController{
-public static function login(){
+public static function login(Router $router){
 
-    echo 'desde login';
+   // echo 'desde login';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         # code...
     }
+    $router->render('auth/login',[
+        'titulo'=> 'Iniciar Sesión'
+    ]);
 }
 
 
@@ -20,13 +26,17 @@ public static function logout(){
     
 }
 
-public static function crear(){
+public static function crear(Router $router){
 
-    echo 'desde crear';
+   // echo 'desde crear';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         # code...
     }
+
+    $router->render('auth/crear',[
+        'titulo' => 'Crear Cuenta'
+    ]);
 }
 
 public static function olvide(){
@@ -45,6 +55,19 @@ public static function reestablecer(){
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         # code...
     }
+}
+
+public static function mensaje(){
+
+    echo 'desde mensaje';
+
+   
+}
+public static function confirmar(){
+
+    echo 'desde confimar';
+
+    
 }
 
 }

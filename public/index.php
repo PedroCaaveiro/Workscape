@@ -22,10 +22,13 @@ $router->post('/crear',[LoginController::class,'crear']);
 $router->get('/olvide',[LoginController::class,'olvide']);
 $router->post('/olvide',[LoginController::class,'olvde']);
 
-
+// nuevo password
 $router->get('/reestablecer',[LoginController::class,'reestablecer']);
 $router->post('/reestablecer',[LoginController::class,'reestablecer']);
 
+// confirmar cuenta
+$router->get('/mensaje',[LoginController::class,'mensaje']);
+$router->get('/confirmar',[LoginController::class,'confirmar']);
 
 
 
