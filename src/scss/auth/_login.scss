@@ -1,0 +1,45 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.login{
+margin-top: 5rem;
+
+.workscape{
+
+  @include m.textoDegradado(v.$morado,v.$verde);
+   
+
+    
+}
+input[type="submit"] {
+  
+    background: linear-gradient(
+      to right,
+      v.$morado 40%,
+      lighten(v.$verde, 30%) 100%
+    );
+    color: white; // o el color que tú quieras para el texto
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+  
+    // Para que se vea bonito:
+    transition: background 0.3s ease;
+  
+    &:hover {
+      background: linear-gradient(
+        to right,
+        lighten(v.$morado, 10%) 40%,
+        lighten(v.$verde, 40%) 100%
+      );
+    }
+  }
+  .acciones{
+    a{
+        color:v.$verde;
+    }
+  }
+
+}

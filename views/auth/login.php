@@ -1,8 +1,8 @@
 
 <?php
 
-// Asegúrate de que la ruta esté correcta según tu estructura de carpetas
-require_once __DIR__ . '/../../includes/app.php';  // Ajustamos la ruta desde views/auth
+
+require_once __DIR__ . '/../../includes/app.php';  
 
 
 
@@ -10,23 +10,23 @@ require_once __DIR__ . '/../../includes/app.php';  // Ajustamos la ruta desde vi
 
 
 
-<div class="contenedor">
-    <h1>Workscape</h1>
-    <p>Crea y administra tus Proyectos</p>
+<div class="contenedor login">
+
+<?php include_once __DIR__. '/../templates/nombre-sitio.php';?>
 
     <div class="contenedor-sm">
-        <div class="descripcion-pagina">Iniciar Sesión</div>
+        <div class="descripcion-pagina">Crea tu cuenta en Workspace</div>
 
         <form action="<?= BASE_URL ?>" class="formulario" method="POST">
 
             <div class="campo">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="email" name="email" id="email" placeholder="Escribe tu Email">
             </div>
 
-            <div class="password">
+            <div class="campo">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Password">
+                <input type="password" name="password" id="password" placeholder="Escribe tu Password">
             </div>
             <input type="submit" value="Iniciar Sesión" class='boton'>
 
