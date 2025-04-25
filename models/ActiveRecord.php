@@ -11,6 +11,7 @@ class ActiveRecord {
     protected $nombre;
     protected $email;
     protected $password;
+    protected $password2;
     protected $token;
     protected $confirmado;
 
@@ -22,6 +23,17 @@ class ActiveRecord {
         self::$db = $database;
     }
 
+    public function __get($propiedad) {
+        if (property_exists($this, $propiedad)) {
+            return $this->$propiedad;
+        }
+    }
+    public function __set($propiedad, $valor) {
+        if (property_exists($this, $propiedad)) {
+            $this->$propiedad = $valor;
+        }
+    }
+    
     public static function setAlerta($tipo, $mensaje) {
         static::$alertas[$tipo][] = $mensaje;
     }
