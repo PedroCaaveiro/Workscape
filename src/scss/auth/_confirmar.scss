@@ -1,0 +1,20 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.confirmar{
+
+    margin-top: 5rem;
+    .workscape{
+       @include m.textoDegradado(v.$cyan,v.$verde);
+    
+        
+    }
+   
+      .acciones{
+        justify-content: center;
+        a{
+            color:v.$verde;
+        }
+      }
+    
+    }

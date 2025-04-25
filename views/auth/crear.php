@@ -6,7 +6,7 @@
     <div class="contenedor-sm">
         <div class="descripcion-pagina">Iniciar Sesión</div>
 
-        <form action="<?= BASE_URL ?>" class="formulario" method="POST">
+        <form action="<?= BASE_URL ?>/crear" class="formulario" method="POST">
 
         <div class="campo">
                 <label for="nombre">Nombre</label>
@@ -27,7 +27,7 @@
                 <label for="password2">Repetir Password</label>
                 <input type="password" name="password2" id="password2" placeholder="Repite tu Password">
             </div>
-            <input type="submit" value="Iniciar Sesión" class='boton'>
+            <input type="submit" value="Crear Cuenta" class='boton'>
 
         </form>
 

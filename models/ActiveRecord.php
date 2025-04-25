@@ -7,6 +7,13 @@ class ActiveRecord {
     protected static $tabla = '';
     protected static $columnasDB = [];
 
+    protected $id;
+    protected $nombre;
+    protected $email;
+    protected $password;
+    protected $token;
+    protected $confirmado;
+
     // Alertas y Mensajes
     protected static $alertas = [];
     

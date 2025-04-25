@@ -1,11 +1,11 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.crear{
+.olvide{
 
     margin-top: 5rem;
     .workscape{
-       @include m.textoDegradado(v.$rosa,v.$gris);
+       @include m.textoDegradado(v.$naranja,v.$gris);
     
         
     }
@@ -13,7 +13,7 @@
   
         background: linear-gradient(
           to right,
-          v.$rosa 40%,
+          v.$naranja 40%,
           lighten(v.$gris, 30%) 100%
         );
         color: white; 
@@ -29,14 +29,14 @@
         &:hover {
           background: linear-gradient(
             to right,
-            lighten(v.$rosa, 10%) 40%,
+            lighten(v.$naranja, 10%) 40%,
             lighten(v.$gris, 40%) 100%
           );
         }
       }
       .acciones{
         a{
-            color:v.$rosa;
+            color:v.$naranja;
         }
       }
     

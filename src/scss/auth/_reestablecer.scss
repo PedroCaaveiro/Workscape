@@ -1,11 +1,11 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.crear{
+.reestablecer{
 
     margin-top: 5rem;
     .workscape{
-       @include m.textoDegradado(v.$rosa,v.$gris);
+       @include m.textoDegradado(v.$indigo,v.$grisOscuro);
     
         
     }
@@ -13,8 +13,8 @@
   
         background: linear-gradient(
           to right,
-          v.$rosa 40%,
-          lighten(v.$gris, 30%) 100%
+          v.$indigo 40%,
+          lighten(v.$grisOscuro, 30%) 100%
         );
         color: white; 
         border: none;
@@ -23,20 +23,20 @@
         cursor: pointer;
         border-radius: 0.5rem;
       
-
+      
         transition: background 0.3s ease;
       
         &:hover {
           background: linear-gradient(
             to right,
-            lighten(v.$rosa, 10%) 40%,
-            lighten(v.$gris, 40%) 100%
+            lighten(v.$indigo, 10%) 40%,
+            lighten(v.$grisOscuro, 40%) 100%
           );
         }
       }
       .acciones{
         a{
-            color:v.$rosa;
+            color:v.$indigo;
         }
       }
     
