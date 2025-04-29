@@ -1,14 +1,20 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.mensaje{
+.mensaje {
 
-    margin-top: 5rem;
-    .workscape{
-       @include m.textoDegradado(v.$rojo,v.$verde);
-    
-        
-    }
-    
-    
-    }
+   margin-top: 5rem;
+
+   .workscape {
+      @include m.textoDegradado(v.$rojo, v.$verde);
+
+
+   }
+
+   .acciones {
+      a {
+         color: v.$verde;
+      }
+   }
+
+}

@@ -24,6 +24,9 @@ public function getPassword2() {
     return $this->password2;
 }
 
+
+
+
 public function validarNuevaCuenta(){
 
     if (!$this->nombre) {

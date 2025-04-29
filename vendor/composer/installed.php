@@ -1,28 +1,28 @@
 <?php return array(
     'root' => array(
-        'name' => 'juandelatorre/up-task_mvc',
+        'name' => 'pedro/workscape_mvc',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'c5ec79f0caba8989d4804765274c496b4da11e51',
+        'reference' => 'dd43c4604be26c0a945809fd2f13efffee114770',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'juandelatorre/up-task_mvc' => array(
+        'pedro/workscape_mvc' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'c5ec79f0caba8989d4804765274c496b4da11e51',
+            'reference' => 'dd43c4604be26c0a945809fd2f13efffee114770',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
         'phpmailer/phpmailer' => array(
-            'pretty_version' => 'v6.9.3',
-            'version' => '6.9.3.0',
-            'reference' => '2f5c94fe7493efc213f643c23b1b1c249d40f47e',
+            'pretty_version' => 'v6.10.0',
+            'version' => '6.10.0.0',
+            'reference' => 'bf74d75a1fde6beaa34a0ddae2ec5fce0f72a144',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpmailer/phpmailer',
             'aliases' => array(),

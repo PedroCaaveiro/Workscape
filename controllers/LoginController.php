@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Classes\Email;
 use Model\ActiveRecord;
 use MVC\Router; 
 use Model\Usuario;
@@ -58,6 +59,10 @@ public static function crear(Router $router){
                 //debuguear($usuario);
 
                 $resultado = $usuario->guardar();
+
+                $email = new Email($usuario->email,$usuario->nombre,$usuario->token);
+                //debuguear($email);
+                $email->enviarConfirmacion();
                 
                 if ($resultado) {
                     header('Location:'.BASE_URL.'/mensaje');
@@ -115,8 +120,32 @@ public static function confirmar(Router $router){
 
     //echo 'desde confimar';
 
+    $token = s($_GET['token']);
+
+    if (!$token) {
+       header('Location:'.BASE_URL);
+    }
+
+    $usuario = Usuario::where('token',$token);
+
+    if (empty($usuario)) {
+        Usuario::setAlerta('error','Token no válido');
+    }else{
+        $usuario->confirmado = 1;
+        $usuario->token = $usuario->token ?? '';
+        $usuario->password2 = $usuario->password2 ?? '';
+
+        $usuario->guardar();
+        Usuario::setAlerta('exito','Cuenta comprobada correctamente');
+        //debuguear($usuario);
+
+    }
+    $alertas = usuario::getAlertas();
+
+
     $router->render('auth/confirmar',[
-        'titulo' => 'Confirma tu cuenta en Workspace'
+        'titulo' => 'Confirma tu cuenta en Workspace',
+        'alertas' => $alertas
     ]);
 }
 

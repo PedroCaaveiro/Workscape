@@ -3,7 +3,7 @@
 
 
 .alertas{
-    padding: 1rem 1rem 1re 2rem;
+    padding: 1rem 1rem 1rem 2rem;
     text-transform: uppercase;
     font-weight: 900;
     margin-bottom: 1rem;
@@ -17,6 +17,13 @@
     border-left: 2rem solid v.$rojo;
     padding-left: 1rem;
     color:v.$rojo;
+}
+
+&.exito{
+    background-color: lighten($color: v.$verde, $amount: 30);
+    border-left: 2rem solid v.$verde;
+    padding-left: 1rem;
+    color:v.$negro;
 }
 
 }
