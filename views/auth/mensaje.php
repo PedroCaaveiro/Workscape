@@ -9,7 +9,7 @@
         <div class="acciones">
            
             
-           <a href="<?= BASE_URL ?>/">Iniciar Sesión</a>
+           <a href="<?= BASE_URL ?>">Iniciar Sesión</a>
 
        </div>
 

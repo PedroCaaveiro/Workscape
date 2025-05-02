@@ -9,14 +9,14 @@ require_once __DIR__ . '/../../includes/app.php';
 ?>
 
 
-
 <div class="contenedor login">
 
 <?php include_once __DIR__. '/../templates/nombre-sitio.php';?>
 
     <div class="contenedor-sm">
-        <div class="descripcion-pagina">Crea tu cuenta en Workspace</div>
+        <div class="descripcion-pagina">Inicia Sesión en tu cuenta en Workspace</div>
 
+        <?php include_once __DIR__. '/../templates/alertas.php';?>
         <form action="<?= BASE_URL ?>" class="formulario" method="POST">
 
             <div class="campo">

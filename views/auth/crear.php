@@ -7,7 +7,7 @@
         <div class="descripcion-pagina">Crea tu cuenta Workspace</div>
         <?php include_once __DIR__. '/../templates/alertas.php';?>
 
-        <form action="<?= BASE_URL ?>/crear" class="formulario" method="POST">
+        <form action="<?= BASE_URL ?>crear" class="formulario" method="POST">
 
         <div class="campo">
                 <label for="nombre">Nombre</label>
@@ -34,7 +34,7 @@
 
         <div class="acciones">
            
-            <a href="<?= BASE_URL ?>/">Ya tienes cuenta? Inicia Sesión</a>
+            <a href="<?= BASE_URL ?>">Ya tienes cuenta? Inicia Sesión</a>
             <a href="<?= BASE_URL ?>olvide">Olvidaste tu Password?</a>
 
         </div>

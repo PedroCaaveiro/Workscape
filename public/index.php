@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use Controllers\LoginController;
+use Controllers\DashboardController;
 use MVC\Router;
 $router = new Router();
 
@@ -11,7 +12,7 @@ $router = new Router();
 $router->get('/',[LoginController::class,'login']);
 $router->post('/',[LoginController::class,'login']);
 
-$router->post('/logout',[LoginController::class,'logout']);
+$router->get('/logout',[LoginController::class,'logout']);
 
 // crear cuenta
 
@@ -20,7 +21,7 @@ $router->post('/crear',[LoginController::class,'crear']);
 // formulario olvide password
 
 $router->get('/olvide',[LoginController::class,'olvide']);
-$router->post('/olvide',[LoginController::class,'olvde']);
+$router->post('/olvide',[LoginController::class,'olvide']);
 
 // nuevo password
 $router->get('/reestablecer',[LoginController::class,'reestablecer']);
@@ -30,6 +31,9 @@ $router->post('/reestablecer',[LoginController::class,'reestablecer']);
 $router->get('/mensaje',[LoginController::class,'mensaje']);
 $router->get('/confirmar',[LoginController::class,'confirmar']);
 
+// proyectos 
+
+$router->get('/dashboard',[DashboardController::class,'index']);
 
 
 

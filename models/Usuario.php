@@ -25,7 +25,22 @@ public function getPassword2() {
 }
 
 
+public function validarLogin(){
 
+  
+    if (!$this->password) {
+        self::$alertas['error'][] = 'Porfavor introduzca el Password';
+    }
+    if (strlen($this->password) < 8) {
+        self::$alertas['error'][] = 'Porfavor el password debe tener minimo 8 caracteres';
+    }
+    if (!$this->email) {
+        self::$alertas['error'][] = 'El E-mail es obligatorio';
+    }
+
+    return self::$alertas;
+
+}
 
 public function validarNuevaCuenta(){
 
@@ -60,7 +75,30 @@ public function generarToken(){
 
 }
 
+public function validarEmail(){
 
+if (!$this->email) {
+    self::$alertas['error'][] = 'El E-mail es obligatorio';
+}
+
+if (!filter_var($this->email,FILTER_VALIDATE_EMAIL)) {
+    self::$alertas['error'][] = 'El E-mail no es valido';
+}
+return self::$alertas;
+
+}
+
+
+public function validarPassword(){
+    if (!$this->password) {
+        self::$alertas['error'][] = 'Porfavor introduzca el Password';
+    }
+    if (strlen($this->password) < 8) {
+        self::$alertas['error'][] = 'Porfavor el password debe tener minimo 8 caracteres';
+    }
+    return self::$alertas;
+
+}
 }
 
 

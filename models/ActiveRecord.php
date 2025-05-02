@@ -84,8 +84,16 @@ class ActiveRecord {
     public static function where($columna, $valor) {
         $query = "SELECT * FROM " . static::$tabla . " WHERE {$columna} = '{$valor}'";
         $resultado = self::consultarSQL($query);
-        return array_shift( $resultado ) ;
+    
+        // Verificamos si el resultado es un array y creamos un objeto de la clase Usuario
+        if (!empty($resultado)) {
+            $usuario = new static;  // 'static' es la clase hija (en este caso Usuario)
+            $usuario->sincronizar($resultado[0]); // Sincronizamos el primer resultado con el objeto
+            return $usuario;
+        }
+        return null;  // Si no hay resultado, retornamos null
     }
+    
 
     // SQL para Consultas Avanzadas.
     public static function SQL($consulta) {
@@ -187,17 +195,26 @@ class ActiveRecord {
     public function sanitizarAtributos() {
         $atributos = $this->atributos();
         $sanitizado = [];
+        
         foreach($atributos as $key => $value ) {
-            $sanitizado[$key] = self::$db->escape_string($value);
+            // Si el valor es null, lo reemplazamos por una cadena vacía o algún valor predeterminado
+            $sanitizado[$key] = ($value === null) ? '' : self::$db->escape_string($value);
         }
+        
         return $sanitizado;
     }
+    
 
-    public function sincronizar($args=[]) { 
-        foreach($args as $key => $value) {
-          if(property_exists($this, $key) && !is_null($value)) {
-            $this->$key = $value;
-          }
+    public function sincronizar($args = []) { 
+        foreach ($args as $key => $value) {
+            if (property_exists($this, $key)) {
+                
+                $value = $value ?? '';  
+                if (trim($value) !== '') {
+                    $this->$key = $value;
+                }
+            }
         }
     }
+    
 }
