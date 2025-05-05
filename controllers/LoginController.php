@@ -58,8 +58,9 @@ class LoginController
 
     public static function logout()
     {
-
-        echo 'desde logout';
+        session_start();
+        $_SESSION = [];
+        header('Location:'. BASE_URL);
     }
 
     public static function crear(Router $router)
