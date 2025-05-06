@@ -46,13 +46,19 @@
     grid-template-columns: repeat($columnas, 1fr);
 }
 
-@mixin textoDegradado($color1,$color2){
-    background: linear-gradient(to right,$color1,40%,lighten($color2,20%)100%);
-    color:transparent;
-    background-clip:text;
-    font-size: 7rem;
+@mixin textoDegradado($color1, $color2) {
+    background: linear-gradient(to right, $color1 40%, lighten($color2, 20%) 100%);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text; // <- necesario para móviles
+    -webkit-text-fill-color: transparent; // <- necesario para móviles
+    font-size: 4rem;
     text-align: center;
-    @include tablet{
-font-size: 10rem;
+
+    
+    @include tablet {
+      font-size: 12rem;
     }
-}
+   
+  }
+  

@@ -3,7 +3,7 @@
         'name' => 'pedro/workscape_mvc',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'eff9c13530055da83817c6bafe045c4dc2a32c94',
+        'reference' => 'eca69c25ab4a6ef9f03bb12676ad54dc6a5150dd',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'pedro/workscape_mvc' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'eff9c13530055da83817c6bafe045c4dc2a32c94',
+            'reference' => 'eca69c25ab4a6ef9f03bb12676ad54dc6a5150dd',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

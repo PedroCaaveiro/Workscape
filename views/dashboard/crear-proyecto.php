@@ -8,6 +8,7 @@
 <form action="<?php echo BASE_URL;?>crear-proyecto" class="formulario" method="POST">
 
 <?php include_once __DIR__. '/formulario-proyecto.php'; ?>
+
 <input type="submit" value="Crear Proyecto">
 
 </form>
