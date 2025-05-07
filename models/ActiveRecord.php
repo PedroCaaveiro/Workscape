@@ -93,6 +93,24 @@ class ActiveRecord {
         }
         return null;  // Si no hay resultado, retornamos null
     }
+
+    public static function belongsTo($columna, $valor) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE {$columna} = '{$valor}'";
+        $resultado = self::consultarSQL($query);
+    
+        
+        $objetos = [];
+
+    if (!empty($resultado)) {
+        foreach ($resultado as $registro) {
+            $objeto = new static;
+            $objeto->sincronizar($registro);
+            $objetos[] = $objeto;
+        }
+    }
+
+    return $objetos; 
+    }
     
 
     // SQL para Consultas Avanzadas.
