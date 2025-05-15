@@ -16,11 +16,12 @@
     <label>Tarea</label>
     <input
     type="text"
-    name="tarea"
+    name="nombre"
     placeholder="Añadir Tarea al Proyecto Actual"
     id="tarea"
     />
     </div>
+     
     <div class="opciones">
     <input type="submit" class="submit-nueva-tarea" value="Añadir Tarea"/>
     <button type="button" class="cerrar-modal">Cancelar</button>
@@ -70,7 +71,7 @@
       return;
 
     }
-    agregartarea();
+    agregartarea(tarea);
   }
 
   function mostrarAlerta(mensaje,tipo,referencia) {
@@ -97,8 +98,13 @@ alerta.remove();
   async function agregartarea(nombreTarea) {
     const datos = new FormData();
     datos.append('nombre', nombreTarea);
+    datos.append('proyectoId',obtenerProyecto());
+     datos.append('estado', 0);
 
-  //  console.log('URL de la API:', baseUrl + 'api/tarea'); // Para verificar la URL
+    
+   
+
+  //  console.log('URL de la API:', baseUrl + 'api/tarea'); 
 
     try {
         const url = baseUrl + 'api/tarea';
@@ -106,18 +112,37 @@ alerta.remove();
             method: 'POST',
             body: datos
         });
-        console.log('Respuesta del servidor:', respuesta); 
-       // const respuestaJson = await respuesta.json(); 
-      //  console.log('Respuesta JSON:', respuestaJson); 
+       // console.log('ProyectoId enviado:', obtenerProyecto());
+       // console.log('Respuesta del servidor:', respuesta); 
 
-      
+       const resultado = await respuesta.json(); 
+       
+       if (resultado.tipo === 'exito') {
+        const modal = document.querySelector('.modal');
+        setTimeout(() => {
+          modal.remove();
+        }, 3000);
+        
 
+       }
+        
+       // console.log('Respuesta JSON:', resultado); 
+        
+
+    mostrarAlerta(resultado.mensaje,resultado.tipo,document.querySelector('.formulario legend'));
     } catch (error) {
         console.error('Error al enviar la tarea:', error);
+        
        
     }
 }
 
+function obtenerProyecto(){
+
+  const proyectoParametro = new URLSearchParams(window.location.search);
+    const proyecto = Object.fromEntries(proyectoParametro.entries());
+    return proyecto.id;
+}
 
 })();
 

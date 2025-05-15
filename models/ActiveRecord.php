@@ -14,6 +14,8 @@ class ActiveRecord {
     protected $password2;
     protected $token;
     protected $confirmado;
+    protected $estado;
+    protected $proyectoId;
 
     // Alertas y Mensajes
     protected static $alertas = [];
