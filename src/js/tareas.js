@@ -2,6 +2,7 @@
 
 obtenerTareas();
 
+let tareas = [];
   // boton para mostrar el modal de agregar tarea 
   const nuevaTarea = document.querySelector('#agregar-tarea');
   nuevaTarea.addEventListener('click', mostrarFormulario);
@@ -16,8 +17,9 @@ async  function obtenerTareas(){
     //console.log(respuesta);
     const resultado = await respuesta.json();
     //console.log(resultado.tareas);
-    const{tareas} = resultado;
-    mostrarTareas(tareas);
+    tareas = resultado.tareas;
+
+    mostrarTareas();
 
 
 
@@ -27,10 +29,11 @@ async  function obtenerTareas(){
 
 
   }
-  function mostrarTareas(tareas){
+  function mostrarTareas(){
 //console.log(tareas);
 if (tareas.length === 0) {
   const contenedorTareas = document.querySelector('#listado-tareas');
+  contenedorTareas.innerHTML = '';
   const textotareas = document.createElement('LI');
   textotareas.textContent = 'No hay Tareas';
   textotareas.classList.add('no-tareas');
@@ -38,6 +41,11 @@ if (tareas.length === 0) {
   return;
 
 }
+
+const estados = {
+  0 : 'Pendiente',
+  1 : 'Completa'
+};
 tareas.forEach(tarea =>{
  // console.log(tarea);
  const contenedorTarea = document.createElement('LI');
@@ -45,7 +53,31 @@ tareas.forEach(tarea =>{
  contenedorTarea.classList.add('tarea');
  const nombreTarea = document.createElement('P');
  nombreTarea.textContent = tarea.nombre;
- console.log(nombreTarea);
+const opcionesDiv = document.createElement('DIV');
+opcionesDiv.classList.add('opciones');
+
+const botonEstadotarea = document.createElement('BUTTON');
+botonEstadotarea.classList.add('estado-tarea');
+botonEstadotarea.classList.add(`${estados[tarea.estado]}`.toLowerCase());
+botonEstadotarea.textContent = estados[tarea.estado];
+botonEstadotarea.dataset.estadotarea = tarea.estado;
+
+const botonEliminarTarea = document.createElement('BUTTON');
+botonEliminarTarea.classList.add('eliminar-tarea');
+botonEliminarTarea.dataset.idTarea = tarea.id;
+botonEliminarTarea.textContent = 'Eliminar';
+// console.log(botonEliminarTarea);
+
+opcionesDiv.appendChild(botonEstadotarea);
+opcionesDiv.appendChild(botonEliminarTarea);
+
+contenedorTarea.appendChild(nombreTarea);
+contenedorTarea.appendChild(opcionesDiv);
+
+const listadoTareas = document.querySelector('#listado-tareas');
+listadoTareas.appendChild(contenedorTarea);
+
+//console.log(contenedorTarea);
 });
 
   }
@@ -138,6 +170,7 @@ setTimeout(() =>{
 
 alerta.remove();
 },5000);
+
 
   }
   async function agregartarea(nombreTarea) {
