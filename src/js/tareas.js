@@ -5,7 +5,9 @@
   let tareas = [];
   // boton para mostrar el modal de agregar tarea 
   const nuevaTarea = document.querySelector('#agregar-tarea');
-  nuevaTarea.addEventListener('click', mostrarFormulario);
+  nuevaTarea.addEventListener('click', function(){
+    mostrarFormulario();
+  });
 
   async function obtenerTareas() {
 
@@ -54,6 +56,10 @@
       contenedorTarea.classList.add('tarea');
       const nombreTarea = document.createElement('P');
       nombreTarea.textContent = tarea.nombre;
+      nombreTarea.ondblclick = function (){
+        mostrarFormulario(editar = true, {...tarea});
+      }
+
       const opcionesDiv = document.createElement('DIV');
       opcionesDiv.classList.add('opciones');
 
@@ -66,19 +72,17 @@
         cambiarEstado(tarea);
       };
 
-      // Un solo clic para cambiar el estado
-    contenedorTarea.addEventListener('click', function (event) {
-      // Evitar que el clic en el botón de estado cambie el estado
-      if (!event.target.classList.contains('estado-tarea')) {
-        cambiarEstado(tarea);
-      }
-    });
+     
+   
 
       const botonEliminarTarea = document.createElement('BUTTON');
       botonEliminarTarea.classList.add('eliminar-tarea');
       botonEliminarTarea.dataset.idTarea = tarea.id;
       botonEliminarTarea.textContent = 'Eliminar';
       // console.log(botonEliminarTarea);
+      botonEliminarTarea.ondblclick = function (){
+        confirmarEliminarTarea({...tarea});
+      }
 
       opcionesDiv.appendChild(botonEstadotarea);
       opcionesDiv.appendChild(botonEliminarTarea);
@@ -94,25 +98,27 @@
 
   }
 
-  function mostrarFormulario() {
-
+  function mostrarFormulario(editar = false,tarea = {}) {
+//console.log(editar);
+//console.log(tarea);
     const modal = document.createElement('DIV');
     modal.classList.add('modal');
     modal.innerHTML = `
    <form class="formulario nueva-tarea">
-    <legend> Añade una nueva Tarea</legend>
+    <legend>${editar ? 'Editar Tarea' : 'Añade una nueva Tarea'} </legend>
     <div class="campo">
     <label>Tarea</label>
     <input
     type="text"
     name="nombre"
-    placeholder="Añadir Tarea al Proyecto Actual"
+    placeholder="${tarea.nombre ? 'Editar la tarea ' : 'Añadir tarea al proyecto actual'}"
     id="tarea"
+    value= "${tarea.nombre ? tarea.nombre : ''}"
     />
     </div>
      
     <div class="opciones">
-    <input type="submit" class="submit-nueva-tarea" value="Añadir Tarea"/>
+    <input type="submit" class="submit-nueva-tarea" value="${tarea.nombre ? 'Editar la tarea ' : 'Añadir tarea'}"/>
     <button type="button" class="cerrar-modal">Cancelar</button>
     </form>
    
@@ -141,8 +147,20 @@
       }
       // console.log(e.target);
       if (e.target.classList.contains('submit-nueva-tarea')) {
-        submitFormularioTarea();
-        // console.log('le diste click');
+          const nombreTarea = document.querySelector('#tarea').value.trim();
+    // console.log(tarea);
+
+    if (nombreTarea === '') {
+      mostrarAlerta('El nombre de la tarea es obligatorio', 'error', document.querySelector('.formulario legend'));
+      return;
+
+    }
+        if (editar) {
+          tarea.nombre = nombreTarea;
+          actualizarTarea(tarea)
+        }else{
+        agregartarea(nombreTarea);
+        }
       }
 
     });
@@ -150,18 +168,7 @@
   }
 
 
-  function submitFormularioTarea() {
-
-    const tarea = document.querySelector('#tarea').value.trim();
-    // console.log(tarea);
-
-    if (tarea === '') {
-      mostrarAlerta('El nombre de la tarea es obligatorio', 'error', document.querySelector('.formulario legend'));
-      return;
-
-    }
-    agregartarea(tarea);
-  }
+ 
 
   function mostrarAlerta(mensaje, tipo, referencia) {
 
@@ -247,6 +254,8 @@
   }
 
   async function actualizarTarea(tarea) {
+    //console.log(tarea);
+   // return;
     const { estado, id, nombre } = tarea;
     const datos = new FormData();
     datos.append('id', id);
@@ -267,13 +276,22 @@
       //console.log(respuesta);
       const resultado = await respuesta.json();
       if (resultado.respuesta.tipo === 'exito') {
-        mostrarAlerta(resultado.respuesta.mensaje,
-          resultado.respuesta.tipo,
-          document.querySelector('.contenedor-nueva-tarea'));
+       Swal.fire(
+        resultado.respuesta.mensaje,
+        resultado.respuesta.mensaje,
+        'success'
+       )
+
+       const modal = document.querySelector('.modal');
+       if (modal) {
+       modal.remove(); 
+       }
+       
 
         tareas = tareas.map(tareaMemoria => {
 if (tareaMemoria.id === id) {
 tareaMemoria.estado = estado;
+tareaMemoria.nombre = nombre;
 }
 return tareaMemoria;
         });
@@ -302,6 +320,58 @@ return tareaMemoria;
       listadoTareas.removeChild(listadoTareas.firstChild);
     }
   }
+
+function confirmarEliminarTarea(tarea){
+Swal.fire({
+  title: "Esta Usted Seguro?",
+  text: "Luego ya no hay vuelta atras...",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "SI, Borrar!"
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire({
+      title: "Borrado!",
+      text: "Tu archivo ha sido Eliminado",
+      icon: "success"
+    });
+   // console.log('eliminando');
+   eliminarTarea(tarea);
+  }
+});
+
+}
+
+async function eliminarTarea(tarea){
+
+  
+   const { estado, id, nombre } = tarea;
+    const datos = new FormData();
+    datos.append('id', id);
+    datos.append('nombre', nombre);
+    datos.append('estado', estado);
+    datos.append('proyectoId', obtenerProyecto());
+    try {
+       const url = baseUrl + 'api/tarea/eliminar';
+       const respuesta = await fetch(url,{
+        method: 'POST',
+        body: datos
+       });
+      // console.log(respuesta);
+       const resultado = await respuesta.json();
+       //console.log(resultado);
+       if (resultado.resultado) {
+       
+        tareas = tareas.filter(tareaMemoria => tareaMemoria.id !== tarea.id);
+        mostrarTareas();
+       }
+    } catch (error) {
+      
+    }
+
+}
 
 })();
 
