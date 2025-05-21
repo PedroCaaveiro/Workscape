@@ -1,32 +1,68 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.sidebar{
+.sidebar {
+    opacity: 0;
     background-color: v.$indigo;
-    padding: 2rem;
-    h2{
+    background-image: url('/build/tarea1.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top center;
+    background-attachment: local;
+    transition: opacity 500ms;
+
+    h2 {
         color: v.$blanco;
         margin: 0;
-        text-align:center;
+        text-align: center;
+        padding: 1rem ;
     }
 
-    .sidebar-nav{
-        margin-top: 5rem;
+    .sidebar-nav {
+        margin-top: 15rem;
 
-        a{
-            color:v.$blanco;
+        @include m.telefono {
+            margin-top: 20rem;
+        }
+
+        a {
+            color: v.$blanco;
             display: block;
             margin: 2rem;
             padding: .7rem;
-            transition-property:background-color;
-            transition-duration: 300ms;
+            transition: background-color 300ms;
 
             &:hover,
-            &.activo{
-                background-color: darken( v.$indigo, $amount:20%);
+            &.activo {
+                background-color: darken(v.$indigo, 20%);
                 border-radius: .5rem;
             }
         }
-        
+    }
+
+    &.mostrar {
+        opacity: 1;
+
+        @include m.telefono {
+            padding: 2rem;
+            height:100%;
+            
+            position:fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgb(0 0 0 /.90);
+        }
+    }
+
+    // Se asegura que en tablet y superior SIEMPRE se muestre
+    @include m.tablet {
+        opacity: 1;
+    }
+
+    @include m.telefono {
+        height: 0;
+        overflow: hidden;
     }
 }

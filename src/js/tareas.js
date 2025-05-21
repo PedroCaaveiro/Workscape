@@ -3,11 +3,30 @@
   obtenerTareas();
 
   let tareas = [];
+  let filtradas = [];
   // boton para mostrar el modal de agregar tarea 
   const nuevaTarea = document.querySelector('#agregar-tarea');
   nuevaTarea.addEventListener('click', function(){
     mostrarFormulario();
   });
+
+const filtros = document.querySelectorAll('#filtros input[type="radio"');
+//console.log(filtros);
+
+filtros.forEach(radio =>{
+  radio.addEventListener('input',filtrarTareas);
+})
+function filtrarTareas(e){
+  const filtro = e.target.value;
+
+  if (filtro !== '') {
+    filtradas = tareas.filter(tareas => tareas.estado === filtro)
+  }else{
+    filtradas = [];
+  }
+ // console.log(filtradas);
+ mostrarTareas();
+}
 
   async function obtenerTareas() {
 
@@ -34,7 +53,12 @@
   function mostrarTareas() {
     //console.log(tareas);
     limpiarTareas();
-    if (tareas.length === 0) {
+    totalPendientes();
+    totalCompletas();
+
+    const arrayTareas =  filtradas.length ? filtradas : tareas;
+
+    if (arrayTareas.length === 0) {
       const contenedorTareas = document.querySelector('#listado-tareas');
       contenedorTareas.innerHTML = '';
       const textotareas = document.createElement('LI');
@@ -49,7 +73,7 @@
       0: 'Pendiente',
       1: 'Completa'
     };
-    tareas.forEach(tarea => {
+    arrayTareas.forEach(tarea => {
       // console.log(tarea);
       const contenedorTarea = document.createElement('LI');
       contenedorTarea.dataset.tareaID = tarea.id;
@@ -373,5 +397,30 @@ async function eliminarTarea(tarea){
 
 }
 
+function totalPendientes(){
+  const totalPendientes = tareas.filter(tarea => tarea.estado === "0");
+ 
+  const pendientesRadio = document.querySelector('#pendientes');
+
+  if (totalPendientes.length === 0) {
+    pendientesRadio.disabled = true;
+  }else{
+    pendientesRadio.disabled = false;
+  }
+   //console.log(totalPendientes);
+}
+function totalCompletas(){
+const totalCompletas = tareas.filter(tarea => tarea.estado === "1");
+ 
+  const completaRadio = document.querySelector('#completadas');
+
+  if (totalPendientes.length === 1) {
+    completaRadio.disabled = true;
+  }else{
+    completaRadio.disabled = false;
+  }
+  // console.log(totalPendientes);
+
+}
 })();
 

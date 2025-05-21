@@ -21,7 +21,7 @@
       </div>
       <div class="campo">
         <label for="Pendientes">Pendientes</label>
-        <input type="radio" name="filtro" id="Pendientes" value="0">
+        <input type="radio" name="filtro" id="pendientes" value="0">
       </div>
     </div>
   
@@ -41,7 +41,7 @@
 
 <?php
 
-$script  = '<script src="' . BASE_URL . 'build/js/tareas.js"></script>';
+$script  .= '<script src="' . BASE_URL . 'build/js/tareas.js"></script>';
 $script .= '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
 
 
