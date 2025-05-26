@@ -16,14 +16,14 @@
         input {
 
             flex: 1;
-            padding: 1rem;
-            border: none;
-            background-color: lighten($color: v.$gris, $amount: 15);
+            padding: 1rem;    
+            background-color:transparent;
+            border: 2px solid v.$negro;
 
         }
 
         ::placeholder {
-            color: v.$blanco ;
+            color: v.$negro ;
             
 
         }

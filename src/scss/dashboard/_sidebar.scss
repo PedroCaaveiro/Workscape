@@ -11,18 +11,43 @@
     background-attachment: local;
     transition: opacity 500ms;
 
-    h2 {
+   
+    .contenedor-sidebar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+ h2 {
         color: v.$blanco;
         margin: 0;
         text-align: center;
         padding: 1rem ;
     }
+    .cerrar-menu{
+        display: flex;
+        justify-content: center;
+        height: 2rem;
+        width: 2rem;
+        @include m.tablet{
+            display: none;
+        }
+        img{
+
+            &:hover{
+                cursor: pointer;
+            }
+        }
+
+    }
+}
 
     .sidebar-nav {
         margin-top: 15rem;
 
         @include m.telefono {
             margin-top: 20rem;
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
+            text-align: center;
         }
 
         a {
@@ -64,5 +89,16 @@
     @include m.telefono {
         height: 0;
         overflow: hidden;
+    }
+
+    .cerrar-sesion-mobile{
+        margin-top: 10rem;
+        .cerrar-sesion{
+            @include m.boton(v.$indigo,v.$blanco);
+        }
+
+    @include m.tablet{
+        display: none;
+    }
     }
 }
