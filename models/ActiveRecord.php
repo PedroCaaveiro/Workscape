@@ -12,6 +12,8 @@ class ActiveRecord {
     protected $email;
     protected $password;
     protected $password2;
+    protected $password_actual;
+    protected $nuevo_password;
     protected $token;
     protected $confirmado;
     protected $estado;
@@ -226,15 +228,12 @@ class ActiveRecord {
     
 
     public function sincronizar($args = []) { 
-        foreach ($args as $key => $value) {
-            if (property_exists($this, $key)) {
-                
-                $value = $value ?? '';  
-                if (trim($value) !== '') {
-                    $this->$key = $value;
-                }
-            }
+       foreach ($args as $key => $value) {
+        if (property_exists($this, $key)) {
+            // Siempre asigna, incluso si es cadena vacía
+            $this->$key = is_string($value) ? trim($value) : $value;
         }
+    }
     }
     
 }
