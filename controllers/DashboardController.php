@@ -142,52 +142,41 @@ if ($proyecto->propietarioId !== $_SESSION['id']) {
         ]);
     }
 
-    public static function cambiar_password( Router $router){
-        session_start();
-        isAuth();
-        $alertas = [];
+public static function cambiar_password(Router $router){
+    session_start();
+    isAuth();
+    $alertas = [];
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $usuario = Usuario::find($_SESSION['id']);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $usuario = Usuario::find($_SESSION['id']);
+        $usuario->sincronizar($_POST);
 
-            $usuario->sincronizar($_POST);
+        $alertas = $usuario->nuevoPassword(); 
 
-        $alertas = $usuario->nuevoPassword();
         if (empty($alertas)) {
-            $resultado = $usuario->comprobarPassword();
-            //debuguear($resultado);
+            $resultado = $usuario->comprobarPassword(); // Verifica si la contraseña actual es correcta
 
             if ($resultado) {
-              
-
+                // La contraseña actual es correcta, actualizamos la nueva contraseña
                 $usuario->password = $usuario->nuevo_password;
-                $usuario->limpiarPasswordActual();
+                $usuario->limpiarPasswordActual(); 
                 $usuario->hashearPassword();
-
                 $usuario->guardar();
 
-                if ($resultado) {
-                   Usuario::setAlerta('exito','Password guardado correctamente');
-                   $alertas = $usuario->getAlertas();
-                }else{
-                    Usuario::setAlerta('error','Password incorrecto');
-                $alertas = $usuario->getAlertas();
-                }
-               //debuguear($usuario);
-            
-               
-            
+                Usuario::setAlerta('exito', 'Password guardado correctamente');
+            } else {
+                // Contraseña incorrecta
+                Usuario::setAlerta('error', 'Password incorrecto');
+            }
+
+            $alertas = $usuario->getAlertas(); // Obtener las alertas (ya sean de éxito o error)
         }
-          
-        }
-
-$router->render('dashboard/cambiar-password',[
-    'titulo' => 'Cambiar Password',
-    'alertas' => $alertas
-
-]);
-
     }
 
-    }
+    $router->render('dashboard/cambiar-password', [
+        'titulo' => 'Cambiar Password',
+        'alertas' => $alertas
+    ]);
+}
+
 }
