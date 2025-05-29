@@ -230,7 +230,7 @@ class ActiveRecord {
     public function sincronizar($args = []) { 
        foreach ($args as $key => $value) {
         if (property_exists($this, $key)) {
-            // Siempre asigna, incluso si es cadena vacía
+            
             $this->$key = is_string($value) ? trim($value) : $value;
         }
     }

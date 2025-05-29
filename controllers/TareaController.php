@@ -35,7 +35,7 @@ class TareaController
 
             $proyectoId = $_POST['proyectoId'];
             $proyecto = Proyecto::where('url', $proyectoId);
-            //  var_dump($proyecto->id);
+           
 
 
             if (!$proyecto || $proyecto->propietarioId !== $_SESSION['id']) {
@@ -51,8 +51,7 @@ class TareaController
             $tarea = new Tarea($_POST);
             $tarea->proyectoId = $proyecto->id;
 
-            // debuguear($_POST);
-            // var_dump($tarea->proyectoId);
+           
             $resultado = $tarea->guardar();
             $respuesta = [
                 'tipo' => 'exito',
