@@ -154,10 +154,10 @@ public static function cambiar_password(Router $router){
         $alertas = $usuario->nuevoPassword(); 
 
         if (empty($alertas)) {
-            $resultado = $usuario->comprobarPassword(); // Verifica si la contraseña actual es correcta
+            $resultado = $usuario->comprobarPassword(); 
 
             if ($resultado) {
-                // La contraseña actual es correcta, actualizamos la nueva contraseña
+                
                 $usuario->password = $usuario->nuevo_password;
                 $usuario->limpiarPasswordActual(); 
                 $usuario->hashearPassword();
@@ -165,11 +165,11 @@ public static function cambiar_password(Router $router){
 
                 Usuario::setAlerta('exito', 'Password guardado correctamente');
             } else {
-                // Contraseña incorrecta
+                
                 Usuario::setAlerta('error', 'Password incorrecto');
             }
 
-            $alertas = $usuario->getAlertas(); // Obtener las alertas (ya sean de éxito o error)
+            $alertas = $usuario->getAlertas(); 
         }
     }
 
