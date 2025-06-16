@@ -51,7 +51,7 @@ $contenido = '
 <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
     <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
         
-        <!-- Logo simulado con texto y degradado -->
+        
         <div style="text-align: center; margin-bottom: 30px;">
             <h1 style="
                 font-size: 32px;
@@ -164,7 +164,7 @@ $contenido = '
 ';
 
 $mail->Body = $contenido;
-$mail->isHTML(true); // Importante para que el HTML se interprete
+$mail->isHTML(true); 
 $mail->send();
 
 
