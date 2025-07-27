@@ -35,13 +35,13 @@
 <?php include_once __DIR__ . '/footer-dashboard.php' ?>
 
 <script>
-  const baseUrl = '<?php echo BASE_URL; ?>'; // Inyectamos el valor de BASE_URL de PHP
+  const baseUrl = '<?php echo BASE_URL; ?>'; 
   
 </script>
 
 <?php
 
-$script  .= '<script src="' . BASE_URL . 'build/js/tareas.js"></script>';
+$script  .= '<script src="' . ASSETS_URL . 'build/js/tareas.js"></script>';
 $script .= '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
 
 

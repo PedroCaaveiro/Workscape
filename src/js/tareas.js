@@ -10,7 +10,8 @@
     mostrarFormulario();
   });
 
-const filtros = document.querySelectorAll('#filtros input[type="radio"');
+const filtros = document.querySelectorAll('#filtros input[type="radio"]');
+
 //console.log(filtros);
 
 filtros.forEach(radio =>{

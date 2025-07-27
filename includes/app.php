@@ -7,8 +7,22 @@ $isLocalhost = ($host === 'localhost' || $host === '127.0.0.1' || strpos($host, 
 //echo 'Localhost: ' . ($isLocalhost ? 'si' : 'no') . '<br>';
 
 // Definir la URL base correctamente para el entorno local
-$base = $isLocalhost ? 'http://127.0.0.1:3000/' : 'https://midominio.com/';
+$isLocalhost = $_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === '127.0.0.1';
+
+// URL base para rutas (controlador)
+$base = $isLocalhost
+    ? 'http://localhost/Workscape/public/index.php/'
+    : 'https://midominio.com/';
+
+// URL base para recursos estáticos (CSS, JS, imágenes)
+$baseAssets = $isLocalhost
+    ? 'http://localhost/Workscape/public/'
+    : 'https://midominio.com/';
+
 define('BASE_URL', $base);
+define('ASSETS_URL', $baseAssets);
+
+
 
 
 

@@ -8,7 +8,8 @@
 
 <?php
 
-$script  = '<script src="' . BASE_URL . 'build/js/app.js"></script>';
+$script = '<script src="' . ASSETS_URL . 'build/js/app.js"></script>';
+
 
 
 

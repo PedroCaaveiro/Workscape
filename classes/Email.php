@@ -24,15 +24,16 @@ class Email
 
         try {
             // Configuración del servidor SMTP
-            $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io';
+             $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Port = 2525;
-            $mail->Username = 'b45ca7be279d0f';
-            $mail->Password = '315a187376ff35';
+            $mail->Username = 'acaaveir@gmail.com';
+            $mail->Password = 'nnkgqvdgchpasbgf'; 
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port =587;
 
             // Remitente y destinatario
-            $mail->setFrom('cuenta@workspace.com', 'Workspace');
+            $mail->setFrom('aaaveir@gmail.com', 'Workspace');
             $mail->addAddress($this->email, $this->nombre);
 
             // Asunto y contenido
