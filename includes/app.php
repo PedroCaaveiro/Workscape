@@ -12,7 +12,7 @@ $isLocalhost = $_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] ==
 // URL base para rutas (controlador)
 $base = $isLocalhost
     ? 'http://localhost/Workscape/public/index.php/'
-    : 'https://midominio.com/';
+    : 'http://workspace.infinityfree.me/';
 
 // URL base para recursos estáticos (CSS, JS, imágenes)
 $baseAssets = $isLocalhost
