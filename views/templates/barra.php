@@ -1,7 +1,7 @@
 <div class="barra-mobile">
     <h1>Workspace</h1>
     <div class="menu">
-        <img src="build/menu.svg" alt="" id="mobile-menu" alt='imagen menu'>
+        <img src="<?= ASSETS_URL ?>build/menu.svg" alt="Icono menú" id="mobile-menu">
     </div>
 </div>
 
