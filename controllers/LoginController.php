@@ -99,7 +99,7 @@ class LoginController
                     $email->enviarConfirmacion();
 
                     if ($resultado) {
-                        header('Location:' . BASE_URL . '/mensaje');
+                        header('Location:' . BASE_URL . 'mensaje');
                         exit;
                     }
                 }

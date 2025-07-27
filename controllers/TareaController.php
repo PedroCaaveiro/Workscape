@@ -14,12 +14,12 @@ class TareaController
         $proyectoId = $_GET['id'];
 
         if (!$proyectoId) {
-            header('Location:' . BASE_URL . '/dashboard');
+            header('Location:' . BASE_URL . 'dashboard');
         }
         $proyecto = Proyecto::where('url', $proyectoId);
         session_start();
         if (!$proyecto || $proyecto->propietarioId !== $_SESSION['id']) {
-            header('Location:/404');
+            header('Location:404');
         }
 
 

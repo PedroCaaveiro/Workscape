@@ -28,12 +28,12 @@ class Email
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'acaaveir@gmail.com';
-            $mail->Password = 'nnkgqvdgchpasbgf'; 
+            $mail->Password = 'weuolspenlultbfe'; 
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port =587;
 
             // Remitente y destinatario
-            $mail->setFrom('aaaveir@gmail.com', 'Workspace');
+            $mail->setFrom('acaaveir@gmail.com', 'Workspace');
             $mail->addAddress($this->email, $this->nombre);
 
             // Asunto y contenido
@@ -41,7 +41,7 @@ class Email
             $mail->isHTML(true);
             $mail->CharSet = 'UTF-8';
 
-            $url = BASE_URL . "/confirmar?token=" . $this->token;
+            $url = BASE_URL . "confirmar?token=" . $this->token;
 $contenido = '
 <!DOCTYPE html>
 <html lang="es">
@@ -88,7 +88,7 @@ $contenido = '
 ';
 
 $mail->Body = $contenido;
-$mail->isHTML(true); 
+
 $mail->send();
 
 
@@ -103,14 +103,16 @@ $mail->send();
     try {
         // Configuración del servidor SMTP
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
-        $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = 'b45ca7be279d0f';
-        $mail->Password = '315a187376ff35';
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'acaaveir@gmail.com';
+            $mail->Password = 'weuolspenlultbfe'; 
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port =587;
+
 
         // Remitente y destinatario
-        $mail->setFrom('cuenta@workspace.com', 'Workspace');
+         $mail->setFrom('acaaveir@gmail.com', 'Workspace');
         $mail->addAddress($this->email, $this->nombre);
 
         // Asunto y contenido
@@ -147,7 +149,7 @@ $contenido = '
             Has solicitado restablecer tu contraseña. Para continuar con el proceso, por favor haz clic en el siguiente botón:
         </p>
         <p style="text-align: center; margin: 30px 0;">
-            <a href="' . BASE_URL . '/reestablecer?token=' . urlencode($this->token) . '" 
+            <a href="' . BASE_URL . 'reestablecer?token=' . urlencode($this->token) . '" 
                style="background-color: #7C3AED; color: #ffffff; text-decoration: none; padding: 12px 20px; border-radius: 5px; display: inline-block; font-size: 16px;">
                 Reestablecer contraseña
             </a>
@@ -165,7 +167,7 @@ $contenido = '
 ';
 
 $mail->Body = $contenido;
-$mail->isHTML(true); 
+
 $mail->send();
 
 
