@@ -2,6 +2,8 @@
 
 //$db = mysqli_connect('sql313.infinityfree.com', 'if0_38503538', 'Caaveiro2025', 'if0_38503538_Workspace');
 
+// prueba
+
 $db = mysqli_connect('localhost', 'root', 'root', 'workscape');
 
 if (!$db) {
