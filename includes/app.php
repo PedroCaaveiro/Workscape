@@ -6,12 +6,12 @@ $isLocalhost = ($host === 'localhost' || $host === '127.0.0.1' || strpos($host, 
 
 // URL base para rutas (controlador)
 $base = $isLocalhost
-    ? 'http://localhost/Workscape/public/index.php/'
+    ? 'http://127.0.0.1:3000/index.php/' 
     : 'https://proyectospedro.42web.io/Workscape/public/index.php/';
 
 // URL base para recursos estáticos (CSS, JS, imágenes)
 $baseAssets = $isLocalhost
-    ? 'http://localhost/Workscape/public/'
+    ? 'http://127.0.0.1:3000/'     
     : 'https://proyectospedro.42web.io/Workscape/public/';
 
 define('BASE_URL', $base);
